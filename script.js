@@ -16,6 +16,8 @@ const validateForm = (form) => {
     const label = node.querySelector('label')
     const input = node.querySelector('input')
     const errorCountainer = node.querySelector('.error')
+
+    let formGroupError = false;
    
     
     for (const rule of validationRules){
@@ -23,8 +25,15 @@ const validateForm = (form) => {
       if(input.hasAttribute(rule.attribute) && !rule.isValid (input)){
 
           errorCountainer.textContent = rule.errorMessage(input, label)
+          input.classList.add('border' , 'border-red-700' , 'border-2' , 'bg-red-50')
+          formGroupError = true
 
       }
+    }
+
+    if (!formGroupError) {
+        errorCountainer.textContent= "";
+        input.classList.remove('border' , 'border-red-700' , 'border-2' , 'bg-red-50')
     }
 
 
