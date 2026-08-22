@@ -21,6 +21,17 @@ const validateForm = (form) => {
       errorMessage: (input, label) =>
         `${label.textContent} needs to be less than ${parseInt(input.getAttribute('customMaxlength'), 10)} Characters`,
     },
+    {
+      attribute: "pattern",
+      isValid: (input) => {
+        const patternRegex = new RegExp(input.pattern);
+        return patternRegex.test(input.value) 
+        
+
+      },
+      errorMessage: (input, label) => `Not a valid ${label.textContent}`  ,
+        
+    },
   ];
 
   const validateSingleFormGroup = (node) => {
